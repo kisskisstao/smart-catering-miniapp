@@ -1,0 +1,87 @@
+.payment-page {
+  background: #f7f8fa;
+  min-height: 100vh;
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+.pay-card {
+  background: #ffffff;
+  border-radius: 18rpx;
+  padding: 42rpx 28rpx;
+  text-align: center;
+}
+
+.status {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.amount {
+  font-size: 64rpx;
+  font-weight: 900;
+  color: #111827;
+  margin: 22rpx 0;
+}
+
+.countdown {
+  margin-top: 22rpx;
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  color: #16a34a;
+  background: #dcfce7;
+  font-weight: 700;
+}
+
+.countdown.expired {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.tips {
+  margin-top: 22rpx;
+  background: #ffffff;
+  border-radius: 18rpx;
+  padding: 26rpx;
+  box-shadow: 0 8rpx 24rpx rgba(15, 23, 42, 0.06);
+}
+
+.tip-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  margin-bottom: 12rpx;
+}
+
+.actions {
+  margin-top: 28rpx;
+  display: grid;
+  gap: 16rpx;
+}
+
+.actions button {
+  border-radius: 14rpx;
+  font-weight: 700;
+}
+
+.pay-btn {
+  color: #ffffff;
+  background: #16a34a;
+}
+
+.plain-btn {
+  color: #374151;
+  background: #ffffff;
+}
+
+.danger {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.loading {
+  text-align: center;
+  color: #6b7280;
+  padding-top: 160rpx;
+}

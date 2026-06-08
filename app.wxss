@@ -1,0 +1,32 @@
+page {
+  min-height: 100vh;
+  background: #f6f7f9;
+  color: #1f2937;
+  font-size: 28rpx;
+}
+
+button {
+  border-radius: 8rpx;
+}
+
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 24rpx;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 8rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.06);
+}
+
+.muted {
+  color: #6b7280;
+}
+
+.price {
+  color: #d1432f;
+  font-weight: 600;
+}

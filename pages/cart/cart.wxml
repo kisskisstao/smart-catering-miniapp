@@ -1,0 +1,44 @@
+<view class="cart-page">
+  <view class="page-head">
+    <view>
+      <view class="page-title">购物车</view>
+      <view class="page-sub">当前 {{tableId}} 号桌 · 已选 {{cart.length}} 种菜品</view>
+    </view>
+    <button wx:if="{{cart.length}}" class="clear-btn" bindtap="clearCart">清空</button>
+  </view>
+
+  <view wx:if="{{!cart.length}}" class="empty">
+    <view class="empty-circle">空</view>
+    <view class="empty-title">购物车还是空的</view>
+    <view class="empty-sub">去点单页挑选喜欢的菜品</view>
+    <button class="go-menu-btn" bindtap="goMenu">去点单</button>
+  </view>
+
+  <view wx:else class="cart-list">
+    <view wx:for="{{cart}}" wx:key="cartKey" class="cart-item">
+      <image class="image" src="{{item.imageUrl || defaultImage}}" mode="aspectFill" data-key="{{item.cartKey}}" binderror="onImageError" />
+      <view class="info">
+        <view class="name">{{item.name}}</view>
+        <view class="spec" wx:if="{{item.spicy || item.size}}">{{item.spicy}} {{item.size}}</view>
+        <view class="item-bottom">
+          <view class="price">¥{{item.price}}</view>
+          <view class="quantity">
+            <view class="step-btn minus" data-key="{{item.cartKey}}" bindtap="decrease">-</view>
+            <input class="quantity-input" type="number" value="{{item.quantity}}" data-key="{{item.cartKey}}" bindblur="updateQuantity" />
+            <view class="step-btn plus" data-key="{{item.cartKey}}" bindtap="increase">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom">
+    <view class="bottom-left">
+      <view class="total-label">合计</view>
+      <view class="total-price">¥{{totalAmount}}</view>
+    </view>
+    <button class="checkout-btn" bindtap="submitOrder" loading="{{submitting}}" disabled="{{submitting || !cart.length}}">
+      去结算
+    </button>
+  </view>
+</view>

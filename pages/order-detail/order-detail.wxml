@@ -1,0 +1,63 @@
+<view class="order-detail-page" wx:if="{{order}}">
+  <view class="status-card">
+    <view class="status-row">
+      <view>
+        <view class="status">{{order.statusText}}</view>
+        <view class="socket-status">{{socketStatus}}</view>
+      </view>
+      <button size="mini" class="refresh-btn" bindtap="refreshOrder" loading="{{loading}}">刷新</button>
+    </view>
+
+    <view class="pending-box" wx:if="{{order.isPendingPayment}}">
+      <view class="pending-title">待支付订单</view>
+      <view class="pending-desc">请在剩余时间内完成支付，超时后订单会自动取消。</view>
+      <view class="countdown {{expired ? 'expired' : ''}}">剩余支付时间 {{remainText}}</view>
+    </view>
+
+    <view class="progress" wx:elif="{{order.status !== 'CANCELLED'}}">
+      <view wx:for="{{steps}}" wx:key="status" class="step {{activeStep >= index ? 'active' : ''}}">
+        <view class="dot"></view>
+        <view class="step-text">{{item.text}}</view>
+      </view>
+    </view>
+
+    <view class="order-meta">
+      <view>订单号：{{order.orderNo}}</view>
+      <view>桌台：{{order.tableNo || order.tableId}}</view>
+      <view>下单时间：{{order.createTime}}</view>
+    </view>
+  </view>
+
+  <view class="detail-card">
+    <view class="section-title">菜品明细</view>
+    <view wx:for="{{order.items}}" wx:key="id" class="item">
+      <view class="item-main">
+        <view class="name">{{item.dishName}}</view>
+        <view class="muted">{{item.spicy}} {{item.size}}</view>
+      </view>
+      <view class="right">
+        <view>x{{item.quantity}}</view>
+        <view class="price">¥{{item.amount}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-card total">
+    <text>合计</text>
+    <text class="price">¥{{order.totalAmount}}</text>
+  </view>
+
+  <view class="actions pending-actions" wx:if="{{order.isPendingPayment}}">
+    <button class="cancel-action" bindtap="cancelOrder" loading="{{cancelling}}" disabled="{{cancelling || expired}}">取消订单</button>
+    <button bindtap="backToPayment">返回支付页</button>
+  </view>
+
+  <view class="actions" wx:else>
+    <button bindtap="goHistory">历史订单</button>
+    <button class="menu-action" bindtap="goMenu">继续点餐</button>
+  </view>
+</view>
+
+<view class="order-detail-page" wx:else>
+  <view class="empty">订单加载中...</view>
+</view>

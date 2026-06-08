@@ -1,0 +1,142 @@
+.reservation-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 120rpx;
+  box-sizing: border-box;
+  background: #f4f8f5;
+  color: #17212b;
+}
+
+.page-head,
+.card-top,
+.info-row,
+.card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-head {
+  margin-bottom: 24rpx;
+}
+
+.page-title {
+  font-size: 42rpx;
+  font-weight: 900;
+}
+
+.page-sub {
+  margin-top: 8rpx;
+  color: #6b7d74;
+  font-size: 25rpx;
+}
+
+.create-btn,
+.empty-btn {
+  width: 132rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  padding: 0;
+  border-radius: 999rpx;
+  color: #fff;
+  background: #20b26b;
+  font-weight: 900;
+  box-shadow: 0 12rpx 26rpx rgba(32, 178, 107, 0.24);
+}
+
+.empty {
+  padding: 140rpx 0;
+  text-align: center;
+  color: #8a94a3;
+}
+
+.empty-title {
+  color: #405047;
+  font-size: 32rpx;
+  font-weight: 900;
+}
+
+.empty-sub {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+}
+
+.empty-btn {
+  width: 180rpx;
+  margin-top: 28rpx;
+}
+
+.reservation-card {
+  margin-bottom: 18rpx;
+  padding: 28rpx;
+  border-radius: 28rpx;
+  background: #fff;
+  box-shadow: 0 12rpx 30rpx rgba(23, 33, 43, 0.07);
+}
+
+.table-no {
+  font-size: 32rpx;
+  font-weight: 900;
+}
+
+.status {
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  color: #13975a;
+  background: #eafff3;
+  font-size: 23rpx;
+  font-weight: 900;
+}
+
+.status-CANCELLED {
+  color: #64748b;
+  background: #e5e7eb;
+}
+
+.status-PENDING {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.info-row {
+  margin-top: 18rpx;
+  color: #6b7d74;
+  font-size: 25rpx;
+}
+
+.info-row text:last-child {
+  color: #17212b;
+  font-weight: 700;
+}
+
+.remark {
+  margin-top: 18rpx;
+  padding: 18rpx;
+  border-radius: 18rpx;
+  color: #6b7d74;
+  background: #f4f8f5;
+  font-size: 24rpx;
+}
+
+.card-actions {
+  margin-top: 22rpx;
+  justify-content: flex-end;
+}
+
+.cancel-btn {
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0;
+  border-radius: 999rpx;
+  color: #ef4444;
+  background: #fff1f2;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.load-more {
+  padding: 28rpx 0;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 24rpx;
+}

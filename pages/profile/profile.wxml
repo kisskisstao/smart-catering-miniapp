@@ -1,0 +1,46 @@
+<view class="profile-page">
+  <view class="user-card">
+    <view class="avatar">{{userInitial}}</view>
+    <view class="user-main">
+      <view class="nickname">{{userInfo ? userInfo.nickname : '未登录用户'}}</view>
+      <view class="phone">{{userInfo && userInfo.phone ? userInfo.phone : '暂未绑定手机号'}}</view>
+    </view>
+    <button class="login-btn" bindtap="login" loading="{{loggingIn}}" disabled="{{loggingIn}}">
+      {{userInfo ? '刷新' : '登录'}}
+    </button>
+  </view>
+
+  <view class="status-card">
+    <view>
+      <view class="status-title">当前用餐</view>
+      <view class="status-sub">门店 {{storeId}} · {{tableId}} 号桌</view>
+    </view>
+    <view class="status-badge">进行中</view>
+  </view>
+
+  <view class="asset-grid">
+    <view class="asset-item">
+      <view class="asset-num">0</view>
+      <view class="asset-label">优惠券</view>
+    </view>
+    <view class="asset-item">
+      <view class="asset-num">0</view>
+      <view class="asset-label">积分</view>
+    </view>
+    <view class="asset-item">
+      <view class="asset-num">0</view>
+      <view class="asset-label">收藏</view>
+    </view>
+  </view>
+
+  <view class="menu-list">
+    <view wx:for="{{menus}}" wx:key="key" class="menu-item" data-key="{{item.key}}" bindtap="handleMenu">
+      <view class="menu-icon">{{item.icon}}</view>
+      <view class="menu-main">
+        <view class="menu-title">{{item.title}}</view>
+        <view class="menu-desc">{{item.desc}}</view>
+      </view>
+      <view class="arrow">›</view>
+    </view>
+  </view>
+</view>

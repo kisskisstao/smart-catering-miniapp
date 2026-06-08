@@ -1,0 +1,23 @@
+<view class="payment-page" wx:if="{{order}}">
+  <view class="pay-card">
+    <view class="status">{{paymentStatus}}</view>
+    <view class="amount">¥{{order.totalAmount}}</view>
+    <view class="muted">订单号：{{order.orderNo}}</view>
+    <view class="countdown {{expired ? 'expired' : ''}}" wx:if="{{order.status === 'PENDING_PAYMENT'}}">剩余支付时间 {{remainText}}</view>
+  </view>
+
+  <view class="tips">
+    <view class="tip-title">订单支付</view>
+    <view class="muted">点击支付订单后需要用户确认支付；确认成功后订单才会提交到商家端。</view>
+    <view class="muted">未支付或支付失败时，订单会进入倒计时详情，可继续支付或取消订单。</view>
+  </view>
+
+  <view class="actions">
+    <button class="pay-btn" bindtap="payOrder" loading="{{paying}}" disabled="{{expired || paying || order.status !== 'PENDING_PAYMENT'}}">支付订单</button>
+    <button class="plain-btn" bindtap="goOrderDetail">查看待支付订单</button>
+  </view>
+</view>
+
+<view class="payment-page" wx:else>
+  <view class="loading">订单加载中...</view>
+</view>

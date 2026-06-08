@@ -1,0 +1,159 @@
+.profile-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 130rpx;
+  box-sizing: border-box;
+  background: #f4f8f5;
+  color: #17212b;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 34rpx 30rpx;
+  border-radius: 34rpx;
+  color: #fff;
+  background: linear-gradient(135deg, #20b26b, #72d99f);
+  box-shadow: 0 18rpx 44rpx rgba(32, 178, 107, 0.24);
+}
+
+.avatar {
+  width: 112rpx;
+  height: 112rpx;
+  line-height: 112rpx;
+  border-radius: 50%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.24);
+  font-size: 44rpx;
+  font-weight: 900;
+}
+
+.user-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: 900;
+}
+
+.phone {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  opacity: 0.86;
+}
+
+.login-btn {
+  width: 116rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0;
+  border-radius: 999rpx;
+  color: #13975a;
+  background: #fff;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.status-card,
+.asset-grid,
+.menu-list {
+  margin-top: 24rpx;
+  border-radius: 28rpx;
+  background: #fff;
+  box-shadow: 0 12rpx 30rpx rgba(23, 33, 43, 0.07);
+}
+
+.status-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx;
+}
+
+.status-title {
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+.status-sub {
+  margin-top: 8rpx;
+  color: #6b7d74;
+  font-size: 24rpx;
+}
+
+.status-badge {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  color: #13975a;
+  background: #eafff3;
+  font-size: 23rpx;
+  font-weight: 900;
+}
+
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 26rpx 0;
+}
+
+.asset-item {
+  text-align: center;
+}
+
+.asset-num {
+  color: #20b26b;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.asset-label {
+  margin-top: 6rpx;
+  color: #6b7d74;
+  font-size: 23rpx;
+}
+
+.menu-list {
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 26rpx;
+  border-bottom: 1rpx solid #eef3f0;
+}
+
+.menu-icon {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 18rpx;
+  text-align: center;
+  color: #13975a;
+  background: #eafff3;
+  font-size: 24rpx;
+  font-weight: 900;
+}
+
+.menu-main {
+  flex: 1;
+}
+
+.menu-title {
+  font-size: 28rpx;
+  font-weight: 900;
+}
+
+.menu-desc {
+  margin-top: 6rpx;
+  color: #8a94a3;
+  font-size: 23rpx;
+}
+
+.arrow {
+  color: #c0c7c3;
+  font-size: 42rpx;
+}

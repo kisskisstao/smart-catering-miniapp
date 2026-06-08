@@ -1,0 +1,77 @@
+<view class="home-page">
+  <view class="top-card">
+    <view class="user-row">
+      <view class="avatar">{{userInitial}}</view>
+      <view class="user-info">
+        <view class="hello">欢迎用餐</view>
+        <view class="nickname">{{userInfo ? userInfo.nickname : '未登录'}}</view>
+      </view>
+      <button class="login-btn" size="mini" bindtap="login" loading="{{loggingIn}}" disabled="{{loggingIn}}">
+        {{userInfo ? '刷新' : '登录'}}
+      </button>
+    </view>
+
+    <view class="table-info">
+      <view class="table-item">
+        <text class="label">当前门店</text>
+        <text class="value">Store {{storeId}}</text>
+      </view>
+      <view class="divider"></view>
+      <view class="table-item">
+        <text class="label">当前桌台</text>
+        <text class="value">{{tableId}} 号桌</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-panel">
+    <button class="primary-action" bindtap="goMenu">
+      <view class="action-title">进入点餐</view>
+      <view class="action-sub">浏览菜单并提交订单</view>
+    </button>
+
+    <view class="secondary-actions">
+      <button class="secondary-action scan" bindtap="scanTable">
+        <view class="action-title">扫码点餐</view>
+        <view class="action-sub">识别桌台二维码</view>
+      </button>
+      <button class="secondary-action history" bindtap="goOrders">
+        <view class="action-title">历史订单</view>
+        <view class="action-sub">查看订单状态</view>
+      </button>
+      <button class="secondary-action reserve" bindtap="goReservation">
+        <view class="action-title">预约桌台</view>
+        <view class="action-sub">选择空闲桌台</view>
+      </button>
+    </view>
+  </view>
+
+  <view class="section-head">
+    <view>
+      <view class="section-title">为你推荐</view>
+      <view class="section-sub">精选热销与推荐菜品</view>
+    </view>
+    <text class="section-more" bindtap="goMenu">更多</text>
+  </view>
+
+  <view class="recommend-loading" wx:if="{{recommendationLoading}}">正在加载推荐...</view>
+
+  <swiper wx:elif="{{recommendedDishes.length}}" class="recommend-swiper" indicator-dots autoplay circular interval="3200" duration="500">
+    <swiper-item wx:for="{{recommendedDishes}}" wx:key="id">
+      <view class="recommend-slide" data-id="{{item.id}}" bindtap="goDishDetail">
+        <image class="recommend-bg" src="{{item.imageUrl || defaultImage}}" mode="aspectFill" data-id="{{item.id}}" binderror="onImageError" />
+        <view class="recommend-mask"></view>
+        <view class="recommend-content">
+          <view class="recommend-name">{{item.name}}</view>
+          <view class="recommend-desc">{{item.description}}</view>
+          <view class="recommend-price">¥{{item.price}}</view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="recommend-empty" wx:else>
+    <view>暂无推荐菜品</view>
+    <button size="mini" bindtap="loadRecommendations">重新加载</button>
+  </view>
+</view>

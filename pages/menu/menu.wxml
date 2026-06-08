@@ -1,0 +1,147 @@
+<view class="menu-page">
+  <view class="brand-card">
+    <view class="brand-top">
+      <view>
+        <view class="brand-title">Fresh Dining</view>
+        <view class="brand-sub">当前 {{tableId}} 号桌 · 门店 {{storeId}}</view>
+      </view>
+      <view class="brand-mark">点</view>
+    </view>
+    <view class="quick-actions">
+      <button class="quick-btn primary" bindtap="scanTable">扫码点单</button>
+      <button class="quick-btn light" bindtap="goReservation">预约桌台</button>
+    </view>
+  </view>
+
+  <view class="search-card">
+    <input class="search" value="{{keyword}}" placeholder="搜索菜品、口味、关键词" bindinput="onKeywordInput" confirm-type="search" bindconfirm="search" />
+    <button wx:if="{{keyword}}" class="clear-search" bindtap="clearSearch">清空</button>
+    <button class="search-btn" bindtap="search">搜索</button>
+  </view>
+
+  <view class="section-title-row">
+    <view>
+      <view class="section-title">精选菜单</view>
+      <view class="section-sub">现点现做，推荐优先展示</view>
+    </view>
+    <view class="recommend-chip">推荐</view>
+  </view>
+
+  <view class="order-layout">
+    <scroll-view scroll-y class="category-side" enhanced show-scrollbar="false">
+      <view class="category-item {{categoryId == 'HOT' ? 'active' : ''}}" data-id="HOT" bindtap="switchCategory">热销</view>
+      <view class="category-item {{!categoryId ? 'active' : ''}}" data-id="" bindtap="switchCategory">全部</view>
+      <view wx:for="{{categories}}" wx:key="id" class="category-item {{categoryId == item.id ? 'active' : ''}}" data-id="{{item.id}}" bindtap="switchCategory">{{item.name}}</view>
+    </scroll-view>
+
+    <scroll-view scroll-y class="dish-side" enhanced show-scrollbar="false">
+      <view class="loading" wx:if="{{loading}}">正在加载菜品...</view>
+      <view class="empty" wx:elif="{{!dishes.length}}">
+        <view class="empty-title">暂无菜品</view>
+        <view class="empty-sub">换个分类看看</view>
+      </view>
+
+      <view wx:else>
+        <view wx:for="{{dishes}}" wx:key="id" class="dish-card">
+          <image class="dish-image" src="{{item.imageUrl || defaultImage}}" mode="aspectFill" data-id="{{item.id}}" binderror="onImageError" bindtap="goDetail" />
+          <view class="dish-info">
+            <view class="dish-name-row">
+              <text class="dish-name">{{item.name}}</text>
+              <text class="badge" wx:if="{{item.recommended}}">招牌</text>
+            </view>
+            <view class="dish-desc">{{item.description || '清爽好味，现点现做'}}</view>
+            <view class="dish-tags" wx:if="{{item.tasteTags}}">{{item.tasteTags}}</view>
+            <view class="dish-bottom">
+              <view>
+                <view class="price">¥{{item.price}}</view>
+                <view class="muted" wx:if="{{item.selectedQuantity}}">已选 {{item.selectedQuantity}}</view>
+              </view>
+              <view wx:if="{{item.selectedQuantity}}" class="dish-stepper">
+                <view class="step-btn minus" data-id="{{item.id}}" catchtap="decreaseDishOne">-</view>
+                <view class="step-num">{{item.selectedQuantity}}</view>
+                <view class="step-btn plus" data-id="{{item.id}}" catchtap="openSpec">+</view>
+              </view>
+              <view wx:else class="add-dot" data-id="{{item.id}}" catchtap="openSpec">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="cart-mask" wx:if="{{cartExpanded}}" bindtap="toggleCart"></view>
+
+  <view class="cart-drawer" wx:if="{{cartExpanded}}">
+    <view class="cart-drawer-head">
+      <text>已选菜品</text>
+      <button class="mini-clear" bindtap="clearCart">清空</button>
+    </view>
+    <scroll-view scroll-y class="cart-list">
+      <view wx:for="{{cart}}" wx:key="cartKey" class="cart-item">
+        <view class="cart-main">
+          <view class="cart-name">{{item.name}}</view>
+          <view class="cart-spec">{{item.spicy}} {{item.size}}</view>
+        </view>
+        <view class="cart-stepper">
+          <view class="step-btn minus" data-key="{{item.cartKey}}" bindtap="decreaseCartItem">-</view>
+          <input class="quantity-input" type="number" value="{{item.quantity}}" data-key="{{item.cartKey}}" bindblur="updateCartItemQuantity" />
+          <view class="step-btn plus" data-key="{{item.cartKey}}" bindtap="increaseCartItem">+</view>
+        </view>
+        <view class="cart-amount">¥{{item.amount}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="cart-bar" wx:if="{{!specVisible}}">
+    <view class="cart-summary" bindtap="toggleCart">
+      <view class="cart-icon">{{cartCount}}</view>
+      <view>
+        <view class="cart-total">¥{{cartTotal}}</view>
+        <view class="cart-tip">{{cartCount ? '点击展开已选菜品' : '请选择商品'}}</view>
+      </view>
+    </view>
+    <button class="settle-btn" bindtap="submitOrder" loading="{{submitting}}" disabled="{{submitting || !cart.length}}">去结算</button>
+  </view>
+
+  <view class="spec-mask" wx:if="{{specVisible}}" bindtap="closeSpec"></view>
+  <view class="spec-panel" wx:if="{{specVisible}}">
+    <view class="spec-head">
+      <image class="spec-image" src="{{currentDish.imageUrl || defaultImage}}" mode="aspectFill" />
+      <view class="spec-info">
+        <view class="spec-name">{{currentDish.name}}</view>
+        <view class="price">¥{{selectedSpecPrice}}</view>
+      </view>
+    </view>
+
+    <view class="spec-section" wx:if="{{currentDish.spicyList.length}}">
+      <view class="spec-title">选择口味</view>
+      <view class="option-list">
+        <view wx:for="{{currentDish.spicyList}}" wx:key="*this" class="option {{selectedSpicy === item ? 'active' : ''}}" data-value="{{item}}" bindtap="selectSpicy">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="spec-section" wx:if="{{currentDish.sizeList.length}}">
+      <view class="spec-title">选择规格</view>
+      <view class="option-list">
+        <view wx:for="{{currentDish.sizeItems}}" wx:key="name" class="option spec-option {{selectedSize === item.name ? 'active' : ''}}" data-value="{{item.name}}" bindtap="selectSize">
+          <text>{{item.name}}</text>
+          <text class="option-price">¥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="spec-quantity">
+      <text>数量</text>
+      <view class="cart-stepper">
+        <view class="step-btn minus {{specQuantity <= 1 ? 'disabled' : ''}}" bindtap="decreaseSpecQuantity">-</view>
+        <input class="quantity-input" type="number" value="{{specQuantity}}" bindinput="onSpecQuantityInput" bindblur="onSpecQuantityBlur" />
+        <view class="step-btn plus" bindtap="increaseSpecQuantity">+</view>
+      </view>
+    </view>
+
+    <view class="spec-actions">
+      <button class="cart-action" bindtap="addSelectedToCart" loading="{{submitting}}">加入购物车</button>
+      <button class="buy-action" bindtap="buySelectedNow" loading="{{submitting}}">直接购买</button>
+    </view>
+  </view>
+</view>

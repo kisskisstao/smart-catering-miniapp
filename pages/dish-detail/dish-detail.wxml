@@ -1,0 +1,42 @@
+<view class="dish-detail-page" wx:if="{{dish}}">
+  <image class="cover" src="{{dish.imageUrl || defaultImage}}" mode="aspectFill" binderror="onImageError" />
+
+  <view class="detail-card">
+    <view class="name">{{dish.name}}</view>
+    <view class="price">¥{{dish.price}}</view>
+    <view class="desc">{{dish.description}}</view>
+
+    <view class="tags" wx:if="{{tasteTags.length}}">
+      <text wx:for="{{tasteTags}}" wx:key="*this" class="tag">{{item}}</text>
+    </view>
+
+    <view class="section" wx:if="{{spicyOptions.length}}">
+      <view class="section-title">口味</view>
+      <view class="options">
+        <view wx:for="{{spicyOptions}}" wx:key="*this" class="option {{selectedSpicy === item ? 'active' : ''}}" data-value="{{item}}" bindtap="selectSpicy">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="section" wx:if="{{sizeOptions.length}}">
+      <view class="section-title">规格</view>
+      <view class="options">
+        <view wx:for="{{sizeOptions}}" wx:key="*this" class="option {{selectedSize === item ? 'active' : ''}}" data-value="{{item}}" bindtap="selectSize">{{item}}</view>
+      </view>
+    </view>
+
+    <view class="quantity-row">
+      <text>数量</text>
+      <view class="quantity">
+        <button size="mini" bindtap="decrease" disabled="{{quantity <= 1}}">-</button>
+        <input class="quantity-input" type="number" value="{{quantity}}" bindinput="onQuantityInput" bindblur="onQuantityBlur" />
+        <button size="mini" bindtap="increase">+</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom">
+    <view class="subtotal">小计 ¥{{subtotal}}</view>
+    <button class="cart-btn" bindtap="addToCart">加入购物车</button>
+    <button class="pay-btn" bindtap="goCart">去结算</button>
+  </view>
+</view>

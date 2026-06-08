@@ -1,0 +1,149 @@
+.orders-page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 130rpx;
+  box-sizing: border-box;
+  background: #f7f8fb;
+  color: #1f2937;
+}
+
+.page-head {
+  padding: 8rpx 4rpx 22rpx;
+}
+
+.page-title {
+  font-size: 42rpx;
+  font-weight: 900;
+}
+
+.page-sub {
+  margin-top: 8rpx;
+  color: #6b7280;
+  font-size: 25rpx;
+}
+
+.status-tabs {
+  white-space: nowrap;
+  margin-bottom: 22rpx;
+}
+
+.status-tab {
+  display: inline-block;
+  margin-right: 14rpx;
+  padding: 14rpx 24rpx;
+  border-radius: 999rpx;
+  color: #6b7280;
+  background: #fff;
+  font-size: 25rpx;
+  box-shadow: 0 8rpx 22rpx rgba(31, 41, 55, 0.05);
+}
+
+.status-tab.active {
+  color: #fff;
+  background: #20b26b;
+  font-weight: 800;
+}
+
+.empty {
+  padding: 140rpx 0;
+  text-align: center;
+  color: #8a94a3;
+}
+
+.empty-title {
+  color: #4b5563;
+  font-size: 32rpx;
+  font-weight: 900;
+}
+
+.empty-sub {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+}
+
+.order-card {
+  margin-bottom: 18rpx;
+  padding: 26rpx;
+  border-radius: 26rpx;
+  background: #fff;
+  box-shadow: 0 12rpx 30rpx rgba(31, 41, 55, 0.06);
+}
+
+.order-top,
+.order-meta,
+.order-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dish-summary {
+  max-width: 480rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+  font-weight: 900;
+}
+
+.status-text {
+  padding: 7rpx 14rpx;
+  border-radius: 999rpx;
+  color: #64748b;
+  background: #e5e7eb;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.status-PENDING_PAYMENT {
+  color: #64748b;
+  background: #e5e7eb;
+}
+
+.status-WAIT_ACCEPT {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.status-COOKING {
+  color: #c2410c;
+  background: #ffedd5;
+}
+
+.status-COMPLETED {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.status-CANCELLED {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.order-meta {
+  margin-top: 18rpx;
+  color: #8a94a3;
+  font-size: 23rpx;
+}
+
+.order-bottom {
+  margin-top: 22rpx;
+}
+
+.amount {
+  color: #ff4d00;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.detail-link {
+  color: #20b26b;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.load-more {
+  padding: 28rpx 0;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 24rpx;
+}

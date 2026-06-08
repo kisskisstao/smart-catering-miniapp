@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/menu/menu",
+    "pages/cart/cart",
+    "pages/order-history/order-history",
+    "pages/profile/profile",
+    "pages/reservation/reservation",
+    "pages/reservation-list/reservation-list",
+    "pages/index/index",
+    "pages/dish-detail/dish-detail",
+    "pages/payment/payment",
+    "pages/order-detail/order-detail"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "智慧餐饮",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f5f8f6"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "tabBar": {
+    "color": "#8a94a3",
+    "selectedColor": "#20b26b",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/menu/menu",
+        "text": "点单",
+        "iconPath": "assets/tabbar/menu.png",
+        "selectedIconPath": "assets/tabbar/menu-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "assets/tabbar/cart.png",
+        "selectedIconPath": "assets/tabbar/cart-active.png"
+      },
+      {
+        "pagePath": "pages/order-history/order-history",
+        "text": "订单",
+        "iconPath": "assets/tabbar/order.png",
+        "selectedIconPath": "assets/tabbar/order-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tabbar/profile.png",
+        "selectedIconPath": "assets/tabbar/profile-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

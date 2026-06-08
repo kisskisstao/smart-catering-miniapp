@@ -1,0 +1,43 @@
+<view class="reservation-page">
+  <view class="page-head">
+    <view>
+      <view class="page-title">我的预约</view>
+      <view class="page-sub">查看桌台预约状态</view>
+    </view>
+    <button class="create-btn" bindtap="createReservation">新增</button>
+  </view>
+
+  <view wx:if="{{loading && !reservations.length}}" class="empty">正在加载预约...</view>
+
+  <view wx:elif="{{!reservations.length}}" class="empty">
+    <view class="empty-title">暂无预约</view>
+    <view class="empty-sub">提前预约，到店更从容</view>
+    <button class="empty-btn" bindtap="createReservation">预约桌台</button>
+  </view>
+
+  <view wx:else class="reservation-list">
+    <view wx:for="{{reservations}}" wx:key="id" class="reservation-card">
+      <view class="card-top">
+        <view class="table-no">{{item.tableNo || item.tableId + '号桌'}}</view>
+        <view class="status status-{{item.status}}">{{item.statusText}}</view>
+      </view>
+      <view class="info-row">
+        <text>时间</text>
+        <text>{{item.dateTime}}</text>
+      </view>
+      <view class="info-row">
+        <text>人数</text>
+        <text>{{item.partySize}} 人</text>
+      </view>
+      <view class="info-row">
+        <text>联系人</text>
+        <text>{{item.contactName}} · {{item.contactPhone}}</text>
+      </view>
+      <view class="remark" wx:if="{{item.remark}}">{{item.remark}}</view>
+      <view class="card-actions" wx:if="{{item.status !== 'CANCELLED'}}">
+        <button class="cancel-btn" data-id="{{item.id}}" bindtap="cancelReservation">取消预约</button>
+      </view>
+    </view>
+    <view class="load-more" wx:if="{{!hasMore}}">没有更多预约了</view>
+  </view>
+</view>
